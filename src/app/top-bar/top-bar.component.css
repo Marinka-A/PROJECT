@@ -1,15 +1,15 @@
-.top
-{
-  width: 100%;
-  height: 80px;
-  background-color: 	darkseagreen;
-  padding: 16px;
+/*.top*/
+/*{*/
+/*  width: 100%;*/
+/*  height: 100px;*/
+/*  background-color: 	darkseagreen;*/
+/*  padding: 16px;*/
 
 
-}
-.flex-container{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
+/*}*/
+/*.flex-container{*/
+/*  display: flex;*/
+/*  flex-direction: row;*/
+/*  justify-content: space-between;*/
+/*  align-items: center;*/
+/*}*/

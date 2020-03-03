@@ -1,0 +1,57 @@
+<div  style="margin: 250px 200px; position: absolute; background-color:rgba(255, 255, 255, 1);padding: 20px; height: 500px; width: 70%; font-family: Roboto; color: rgba(117, 117, 117, 0.866666666666667);
+" >
+<form [formGroup] = sampleform>
+
+<label>
+  Project Code:
+  <br>
+  <input type="text" formControlName="code" required #code>
+</label>
+
+
+  <label style="margin-left: 50px">
+    Project Title:
+    <br>
+    <input type="text" formControl="title" style="width: 849px" required >
+  </label>
+
+<br><br>
+
+  <label>
+   Description:
+    <br>
+    <textarea type="text" formControl="description" cols="150" rows="5"></textarea>
+  </label>
+  <br><br>
+
+  <label>
+    Implementation Status:
+    <br>
+    <select  formControl="status" required>
+      <option>select</option>
+    </select >
+  </label>
+
+  <label style="margin-left: 50px">
+    Planned Start Date:
+    <br>
+    <input type="datetime-local" formControl="startDate" required>
+  </label>
+
+  <label style="margin-left: 50px">
+    Planned End Date:
+    <br>
+    <input type="datetime-local" formControl="endDate">
+  </label>
+
+  <label style="margin-left: 50px">
+    Duartion:
+    <br>
+    <input type="text" formControl="duration">
+  </label>
+
+
+</form>
+
+<p>STATUS:{{sampleform.status}}</p>
+</div>
