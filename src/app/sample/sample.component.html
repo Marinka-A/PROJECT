@@ -20,7 +20,7 @@
   <label>
    Description:
     <br>
-    <textarea type="text" formControl="description" cols="150" rows="5" s></textarea>
+    <textarea type="text" formControl="description" cols="150" rows="5"></textarea>
   </label>
   <br><br>
 
@@ -28,7 +28,7 @@
     Implementation Status:
     <br>
     <select  formControl="status" required>
-      <option>select</option>
+      <option *ngFor="let s of implementationStatus">{{s.name}}</option>
     </select >
   </label>
 

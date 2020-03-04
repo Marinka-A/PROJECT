@@ -1,5 +1,6 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {FormControl,FormGroup,FormBuilder,Validators} from '@angular/forms';
+import {ClassifiersService} from '../services/ClassifiersService';
 
 @Component({
   selector: 'app-sample',
@@ -17,7 +18,9 @@ sampleform =this.fb.group({
   duration:[''],
 
 })
-  constructor(private fb:FormBuilder) { }
+  constructor(private fb:FormBuilder, public classifier:ClassifiersService) { }
+
+  implementationStatus = this.classifier.getClassifiers("implementationStatus");
 
   @ViewChild("start") start;
 @ViewChild("end") end;
@@ -28,8 +31,6 @@ difdate =  +this.endDate;
 
 
   ngOnInit() {
-
-
 
   }
 

@@ -1,11 +1,15 @@
 import {Injectable} from '@angular/core';
 import {Classifiers} from '../model/Classifiers';
 
-@Injectable()
+@Injectable({
+  providedIn:'root'
+  })
 export class ClassifiersService{
+  sectors;
+  implimentationStatus;
   constructor() {
   }
-  static  Implementation_Status:Classifiers[] =[
+ Implementation_Status:Classifiers[] =[
     new Classifiers(1, 'Planned'),
     new Classifiers(2, 'Pipelined'),
     new Classifiers(3, 'Ongoing'),
@@ -16,13 +20,20 @@ export class ClassifiersService{
     new Classifiers(8, 'Compladed')
   ];
 
-  static  Sectors:Classifiers[]=[
+ Sectors:Classifiers[]=[
     new Classifiers(1,'Health'),
     new Classifiers(2,'Agriculture'),
     new Classifiers(3,'Economy'),
     new Classifiers(4,'Administrative')
   ];
-
+getClassifiers(name:string){
+  switch (name) {
+    case 'implimentationStatus':
+      return this.Implementation_Status;
+    case 'sectors':
+      return this.Sectors;
+  }
+}
 
 
 }
