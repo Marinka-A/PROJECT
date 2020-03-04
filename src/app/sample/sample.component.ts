@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {FormControl,FormGroup,FormBuilder,Validators} from '@angular/forms';
 
 @Component({
@@ -6,7 +6,7 @@ import {FormControl,FormGroup,FormBuilder,Validators} from '@angular/forms';
   templateUrl: './sample.component.html',
   styleUrls: ['./sample.component.css']
 })
-export class SampleComponent implements OnInit {
+export class SampleComponent implements OnInit,OnDestroy {
 sampleform =this.fb.group({
   code:['',Validators.required],
   title:['',Validators.required],
@@ -19,7 +19,23 @@ sampleform =this.fb.group({
 })
   constructor(private fb:FormBuilder) { }
 
-  ngOnInit(): void {
+  @ViewChild("start") start;
+@ViewChild("end") end;
+
+  currentDate: Date = new Date(this.start);
+  endDate: Date = new Date(this.end);
+difdate =  +this.endDate;
+
+
+  ngOnInit() {
+
+
+
+  }
+
+  ngOnDestroy(): void {
+
+
   }
 
 }

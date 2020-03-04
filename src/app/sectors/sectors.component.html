@@ -1,4 +1,20 @@
-<div  style="margin: 250px 200px; background-color:rgba(255, 255, 255, 1);padding: 20px; height: 500px; width: 70%; font-family: Roboto; color: rgba(117, 117, 117, 0.866666666666667);" >
+<div  style="margin: 50px 200px; background-color:rgba(255, 255, 255, 1);padding: 20px; height: 500px; width: 70%; font-family: Roboto; color: rgba(117, 117, 117, 0.866666666666667);" >
+  <p>Sectors (in line table)</p>
 
+  <ul>
+    <li *ngFor="let a of [1,2,3]">{{a}} </li>
+  </ul>
+<div style="margin-top: 400px">
+  <label>
+    <select style="width: 250px; height: 25px">
+      <option>select</option>
+    </select >
+  </label>
 
+  <label style="margin-left: 50px">
+    <input type="text">
+  </label>
+
+  <button type="button" class="btn btn-success" style="margin-left: 50px">ADD</button>
+</div>
 </div>
