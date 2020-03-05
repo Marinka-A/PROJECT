@@ -7,6 +7,13 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { SampleComponent } from './sample/sample.component';
 import { SectorsComponent } from './sectors/sectors.component';
 import { LocationsComponent } from './locations/locations.component';
+import {RouterModule,Routes} from '@angular/router';
+import { AddProjectLocationComponent } from './add-project-location/add-project-location.component';
+
+const appRoutes:Routes=[
+
+  {path:'location',component:AddProjectLocationComponent},
+  ];
 
 @NgModule({
   declarations: [
@@ -14,11 +21,16 @@ import { LocationsComponent } from './locations/locations.component';
     TopBarComponent,
     SampleComponent,
     SectorsComponent,
-    LocationsComponent
+    LocationsComponent,
+    AddProjectLocationComponent
   ],
   imports: [
     BrowserModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forRoot(
+      appRoutes,
+      {enableTracing:true}
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]

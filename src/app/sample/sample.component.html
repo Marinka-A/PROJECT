@@ -1,18 +1,18 @@
-<div  style="margin: 70px 200px; background-color:rgba(255, 255, 255, 1);padding: 20px; height: 500px; width: 70%; font-family: Roboto; color: rgba(117, 117, 117, 0.866666666666667);" >
+<div  style="margin: 120px 200px; background-color:rgba(255, 255, 255, 1);padding: 20px; height: 500px; width: 70%; font-family: Roboto; color: rgba(117, 117, 117, 0.866666666666667);" >
   <p>SAMPLE</p>
-<form [formGroup] = sampleform>
+<form [formGroup]="myForm">
 
 <label>
   Project Code:
   <br>
-  <input type="text" formControlName="code" required #code>
+  <input type="text" formControlName="code"  #code name="code" required>
 </label>
 
 
   <label style="margin-left: 50px">
     Project Title:
     <br>
-    <input type="text" formControl="title" style="width: 849px" required >
+    <input type="text" formControlName="title" style="width: 849px"  name="title" required>
   </label>
 
 <br><br>
@@ -20,37 +20,39 @@
   <label>
    Description:
     <br>
-    <textarea type="text" formControl="description" cols="150" rows="5"></textarea>
+    <textarea type="text" formControlName="description" cols="150" rows="5" name="description"></textarea>
   </label>
   <br><br>
 
   <label>
     Implementation Status:
     <br>
-    <select  formControl="status" required>
-      <option *ngFor="let s of implementationStatus">{{s.name}}</option>
+    <select required="valid" formControlName="status" style="width: 250px; height: 25px" name="select">
+
+      <option  *ngFor="let s of implementationStatus">{{s.name}}</option>
     </select >
   </label>
 
   <label style="margin-left: 50px">
-    Planned Start Date:
+    Planned Start Date
     <br>
-    <input type="date" formControl="startDate" required #start>
+    <input type="date" required formControlName="startDate"  #start name="start">
   </label>
 
   <label style="margin-left: 50px">
     Planned End Date:
     <br>
-    <input type="date" formControl="endDate" #end>
+    <input type="date" formControlName="endDate" #end name="end">
   </label>
 
   <label style="margin-left: 50px">
     Duartion:
     <br>
-    <input type="text" formControl="duration" [value]="currentDate"  >
+    <input type="text" formControlName="duration" [value]="f()"   name="duration">
   </label>
-{{difdate}}
-</form>
+{{f().valueOf()}}
 
-<p>STATUS:{{sampleform.status}}</p>
+
+
+</form>
 </div>
