@@ -1,7 +1,7 @@
-import {Sector} from './Sector';
+import {SectorModel} from './sector.model';
 
-export class Project {
-  projectId: number;
+export class ProjectModel {
+  id: number;
   code: any;
   title: string;
   descripton: string;
@@ -9,7 +9,7 @@ export class Project {
   plannedStartDate: Date;
   plannedEndDate: Date;
   duration: number;
-  sectors: Sector[];
+  sectors: SectorModel[];
   location: Location[];
 
   constructor(projectId: number,
@@ -20,9 +20,9 @@ export class Project {
               plannedStartDate: Date,
               plannedEndDate: Date,
               duration: number,
-              sectors: Sector[],
+              sectors: SectorModel[],
               location: Location[]) {
-    this.projectId = projectId;
+    this.id = projectId;
     this.code = code;
     this.title = title;
     this.descripton = descripton;

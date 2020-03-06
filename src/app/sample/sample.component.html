@@ -36,21 +36,21 @@
   <label style="margin-left: 50px">
     Planned Start Date
     <br>
-    <input type="date" required formControlName="startDate"  #start name="start">
+    <input type="date" required formControlName="startDate" [(ngModel)]="start" name="start">
   </label>
 
   <label style="margin-left: 50px">
     Planned End Date:
     <br>
-    <input type="date" formControlName="endDate" #end name="end">
+    <input type="date" formControlName="endDate" [(ngModel)]="end"  name="end">
   </label>
 
   <label style="margin-left: 50px">
     Duartion:
     <br>
-    <input type="text" formControlName="duration" [value]="f()"   name="duration">
+    <input type="text" formControlName="duration" [value]="duration" [(ngModel)]="duration"  name="duration">
   </label>
-{{f().valueOf()}}
+
 
 
 

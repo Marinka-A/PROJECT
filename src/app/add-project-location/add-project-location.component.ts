@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder} from '@angular/forms';
-import {ClassifiersService} from '../services/ClassifiersService';
+import {ClassifiersSevice} from '../services/classifiers.sevice';
 
 @Component({
   selector: 'app-add-project-location',
@@ -9,7 +9,7 @@ import {ClassifiersService} from '../services/ClassifiersService';
 })
 export class AddProjectLocationComponent implements OnInit {
 
-  constructor( public classifier:ClassifiersService) { }
+  constructor( public classifier:ClassifiersSevice) { }
 
   locationCountry = this.classifier.getClassifiers("country");
   locationDistrict= this.classifier.getClassifiers("district");

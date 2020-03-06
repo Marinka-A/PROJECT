@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {ClassifiersService} from './services/ClassifiersService';
+import {ClassifiersSevice} from './services/classifiers.sevice';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +9,8 @@ import {ClassifiersService} from './services/ClassifiersService';
 export class AppComponent {
   title = 'project';
 
-  constructor(public classifier:ClassifiersService){
+  constructor(){
 
   }
-  implementationStatus = this.classifier.getClassifiers("implimentationStatus");
+
 }

@@ -1,27 +1,36 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, DoCheck, OnChanges, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {FormControl,FormGroup,FormBuilder,Validators} from '@angular/forms';
-import {ClassifiersService} from '../services/ClassifiersService';
+import {ClassifiersSevice} from '../services/classifiers.sevice';
+
+
 
 @Component({
   selector: 'app-sample',
   templateUrl: './sample.component.html',
   styleUrls: ['./sample.component.css']
 })
-export class SampleComponent implements OnInit,OnDestroy {
+export class SampleComponent implements OnInit,OnDestroy,DoCheck {
   public myForm: FormGroup;
 
-  constructor(private fb:FormBuilder, public classifier:ClassifiersService) { }
+  constructor(private fb:FormBuilder, public classifier:ClassifiersSevice) { }
 
   implementationStatus = this.classifier.getClassifiers("implimentationStatus");
 
-  @ViewChild("start") start;
-@ViewChild("end") end;
-f() {
-  let currentDate = new Date(this.start);
-  let endDate= new Date(this.end);
-  let difdate = endDate.getDay()-currentDate.getDay();
-    return difdate;
-}
+
+  start;
+  end;
+  duration;
+
+  f(start, end) {
+    if (start && end) {
+      start = new Date(this.start).getTime();
+      end = new Date(this.end).getTime();
+      let diff = end - start;
+      let difDate=diff/(60 * 60 * 24 *1000)
+      this.duration=`${difDate}`
+    }
+  }
+
   ngOnInit() {
     this.myForm =this.fb.group({
       code:[''],
@@ -30,13 +39,18 @@ f() {
       status:[''],
       startDate:[''],
       endDate:[''],
-      duration:[this.f()],
+      duration:[''],
 
     })
   }
 
   ngOnDestroy(): void {
 
+
+  }
+
+  ngDoCheck(): void {
+    this.f(this.start, this.end);
 
   }
 

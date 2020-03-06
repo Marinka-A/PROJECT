@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { SampleComponent } from './sample/sample.component';
 import { SectorsComponent } from './sectors/sectors.component';
 import { LocationsComponent } from './locations/locations.component';
@@ -29,8 +29,9 @@ const appRoutes:Routes=[
     ReactiveFormsModule,
     RouterModule.forRoot(
       appRoutes,
-      {enableTracing:true}
-    )
+      {enableTracing: true}
+    ),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
