@@ -4,9 +4,9 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 @Injectable()
 export abstract class ProjectService {
-  abstract getProjectById(id: number): Observable<ProjectModel> ;
+  abstract getProjectById(id: number): Observable<ProjectModel[]> ;
 
-  abstract getProjects(): Observable<ProjectViewModel[]>;
+  abstract getProjects(): Observable<ProjectModel[]>;
 
 
 }

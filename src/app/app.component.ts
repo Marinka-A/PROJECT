@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {ClassifiersSevice} from './services/classifiers.sevice';
+import {DummyProjectService} from './services/impl/dummy-project.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import {ClassifiersSevice} from './services/classifiers.sevice';
 export class AppComponent {
   title = 'project';
 
-  constructor(){
+  constructor(private pr:DummyProjectService){
 
   }
 

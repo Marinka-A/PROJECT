@@ -2,7 +2,7 @@ import {SectorModel} from './sector.model';
 
 export class ProjectModel {
   id: number;
-  code: any;
+  project: string="Project";
   title: string;
   descripton: string;
   implementationStatusId: number;
@@ -12,27 +12,31 @@ export class ProjectModel {
   sectors: SectorModel[];
   location: Location[];
 
-  constructor(projectId: number,
-              code: any,
-              title: string,
-              descripton: string,
-              implementationStatusId: number,
-              plannedStartDate: Date,
-              plannedEndDate: Date,
-              duration: number,
-              sectors: SectorModel[],
-              location: Location[]) {
-    this.id = projectId;
-    this.code = code;
-    this.title = title;
-    this.descripton = descripton;
-    this.implementationStatusId = implementationStatusId;
-    this.plannedStartDate = plannedStartDate;
-    this.plannedEndDate = plannedEndDate;
-    this.duration = duration;
-    this.sectors = sectors;
-    this.location = location;
-
+  // constructor(projectId: number,
+  //             code: any,
+  //             title: string,
+  //             descripton: string,
+  //             implementationStatusId: number,
+  //             plannedStartDate: Date,
+  //             plannedEndDate: Date,
+  //             duration: number,
+  //             sectors: SectorModel[],
+  //             location: Location[]) {
+  //   this.id = projectId;
+  //   this.code = code;
+  //   // this.title = title;
+  //   // this.descripton = descripton;
+  //   // this.implementationStatusId = implementationStatusId;
+  //   // this.plannedStartDate = plannedStartDate;
+  //   // this.plannedEndDate = plannedEndDate;
+  //   // this.duration = duration;
+  //   // this.sectors = sectors;
+  //   // this.location = location;
+  //
+  // }
+  constructor(project?:string,id?:number){
+    project=this.project;
+    id++;
   }
 
 }
