@@ -7,10 +7,10 @@ export abstract class ProjectService {
   abstract getProjectById(id: number): Observable<ProjectModel> ;
 
   abstract getProjects():Observable<ProjectViewModel[]>;
-
-  abstract  addProject(projectModel:ProjectModel):Observable<Response>;
-
-   abstract  deleteProject(id: string):Observable<Response>;
+  //
+  // abstract  addProject(projectModel:ProjectModel):Observable<Response>;
+  //
+  //  abstract  deleteProject(id: string):Observable<Response>;
 
 
 }

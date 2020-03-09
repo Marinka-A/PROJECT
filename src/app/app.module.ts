@@ -13,7 +13,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
-import { AddNewProjectComponent } from './add-new-project/add-new-project.component';
+import { ProjectComponent } from './add-new-project/add-new-project.component';
 import { ProjectListComponent } from './project-list/project-list.component';
 import {MatInputModule} from '@angular/material/input';
 import {MatNativeDateModule} from '@angular/material/core';
@@ -24,7 +24,7 @@ import {MatSelectModule} from '@angular/material/select';
 
 const appRoutes:Routes=[
   {path:'',component: ProjectListComponent},
-  {path:'project:id',component:AddNewProjectComponent},
+  {path:'project:id',component:ProjectComponent},
 ];
 @NgModule({
   declarations: [
@@ -34,7 +34,7 @@ const appRoutes:Routes=[
     TopBarComponent,
     SectorsComponent,
     SampleComponent,
-    AddNewProjectComponent,
+    ProjectComponent,
     ProjectListComponent
   ],
   imports: [

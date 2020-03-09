@@ -29,7 +29,7 @@ export class DummyProjectService extends  ProjectService{
   getProjects(): Observable<ProjectViewModel[]> {
     return undefined;
   }
-  //
+
   // addProject(projectModel: ProjectModel): Observable<Response> {
   //  return of();
   // }
