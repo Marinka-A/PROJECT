@@ -1,0 +1,86 @@
+<div  style="margin: 120px 200px; background-color:rgba(255, 255, 255, 1);padding: 20px;  width: 70%; font-family: Roboto; color: rgba(117, 117, 117, 0.866666666666667);" >
+
+<h2>SAMPLE</h2>
+<form [formGroup]="myForm">
+
+  <mat-form-field>
+    <mat-label>Project Code</mat-label>
+    <input matInput formControlName="code" >
+  </mat-form-field>
+<br>
+
+  <mat-form-field>
+    <mat-label>Project Title</mat-label>
+    <input matInput formControlName="title">
+  </mat-form-field>
+
+  <br><br>
+
+
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+
+
+  <br><br>
+
+
+  <mat-form-field style="width: 250px; height: 25px" name="select">
+    <mat-label> Implementation Status:</mat-label>
+    <mat-select  formControlName="status">
+      <mat-option>
+
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+    <mat-form-field style="margin-left: 50px">
+      <mat-label >Start date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="startDate">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+
+  <mat-form-field style="margin-left: 50px">
+    <mat-label >End date</mat-label>
+    <input matInput [matDatepicker]="picker1" formControlName="endDate">
+    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-datepicker #picker1></mat-datepicker>
+  </mat-form-field>
+
+
+
+    <mat-form-field style="margin-left: 50px">
+      <mat-label>Duration</mat-label>
+      <input matInput formControlName="duration">
+    </mat-form-field>
+
+<br><br><br><br>
+<div>
+  <h2>Sector</h2>
+  <mat-form-field style="width: 250px; height: 25px" name="select">
+    <mat-label> SECTOR</mat-label>
+    <mat-select  formControlName="sect">
+      <mat-option>
+
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+    <mat-form-field style="margin-left: 50px">
+      <input matInput formControlName="percent">
+    </mat-form-field>
+    <button type="button" class="btn btn-success"  style="margin-left: 50px" >ADD</button>
+
+</div>
+  <br><br>
+  <div>
+    <h2>Project Location</h2>
+    <button type="button" class="btn btn-success"  style="margin-left: 50px" >ADD</button>
+  </div>
+
+</form>
+</div>

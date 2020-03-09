@@ -4,9 +4,18 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 @Injectable()
 export abstract class ProjectService {
-  abstract getProjectById(id: number): Observable<ProjectModel[]> ;
+  abstract getProjectById(id: number): Observable<ProjectModel> ;
 
-  abstract getProjects(): Observable<ProjectModel[]>;
+  abstract getProjects():Observable<ProjectViewModel[]>;
+
+  abstract  addProject(projectModel:ProjectModel):Observable<Response>;
+
+   abstract  deleteProject(id: string):Observable<Response>;
 
 
+}
+class Response {
+  a:boolean;
+  validations:string[];
+  newId:number
 }
