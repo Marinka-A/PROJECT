@@ -20,11 +20,17 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatSelectModule} from '@angular/material/select';
+import {MatDialogModule} from '@angular/material/dialog';
+import { CourseDialogComponent } from './course-dialog/course-dialog.component';
+import {ProjectService} from './services/project.service';
+import {DummyProjectService} from './services/impl/dummy-project.service';
 
 
 const appRoutes:Routes=[
-  {path:'',component: ProjectListComponent},
-  {path:'project:id',component:ProjectComponent},
+  {path:'projects',component: ProjectListComponent},
+  {path:'project',component:ProjectComponent},
+  {path:'addlocation', component:CourseDialogComponent},
+  {path:'**', redirectTo:'/projects'}
 ];
 @NgModule({
   declarations: [
@@ -35,15 +41,18 @@ const appRoutes:Routes=[
     SectorsComponent,
     SampleComponent,
     ProjectComponent,
-    ProjectListComponent
+    ProjectListComponent,
+    CourseDialogComponent
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule, RouterModule.forRoot(
       appRoutes,
       {enableTracing: true}
-    ), MatButtonModule, MatTableModule, MatIconModule, MatDividerModule, MatInputModule, MatNativeDateModule, MatDatepickerModule, BrowserAnimationsModule, MatSelectModule
+    ), MatButtonModule, MatTableModule, MatIconModule, MatDividerModule, MatInputModule, MatNativeDateModule, MatDatepickerModule, BrowserAnimationsModule, MatSelectModule,MatDialogModule
   ],
-  providers: [],
+  providers: [
+    {provide:ProjectService,useClass:DummyProjectService}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

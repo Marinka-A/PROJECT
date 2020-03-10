@@ -1,0 +1,35 @@
+<div style=" background-color:rgba(255, 255, 255, 1);padding: 20px; height: 500px; width: 350px; font-family: Roboto; color: rgba(117, 117, 117, 0.866666666666667)">
+  <h3>Add Project Location</h3>
+  <button type="button"  style="margin: 0px 300px 0px 300px" mat-dialog-close>X</button>
+
+  <mat-form-field style="width: 250px; height: 25px" >
+    <mat-label>  Country* </mat-label>
+    <mat-select >
+      <mat-option *ngFor="let i of locationCountry">
+        {{i.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <br>
+  <br>
+  <mat-form-field style="width: 250px; height: 25px" >
+    <mat-label>  District* </mat-label>
+    <mat-select >
+      <mat-option *ngFor="let i of locationDistrict">
+        {{i.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <br>
+  <br>
+  <mat-form-field style="margin-left: 50px">
+    <mat-label>  % </mat-label>
+    <input matInput>
+  </mat-form-field>
+  <br>  <br>  <br>
+  <button type="button" class="btn btn-success">ADD</button>
+
+</div>
+

@@ -11,8 +11,7 @@ export class AddProjectLocationComponent implements OnInit {
 
   constructor( public classifier:ClassifiersSevice) { }
 
-  locationCountry = this.classifier.getClassifiers("country");
-  locationDistrict= this.classifier.getClassifiers("district");
+
 
   ngOnInit(): void {
   }

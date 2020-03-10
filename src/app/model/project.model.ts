@@ -1,6 +1,7 @@
 import {SectorModel} from './sector.model';
 
 export class ProjectModel {
+  id:number;
   code: string="Project";
   title: string;
   descripton: string;
@@ -11,7 +12,7 @@ export class ProjectModel {
   sectors: SectorModel[];
   location: Location[];
 
-  constructor(
+  constructor(id:number,
               code: any,
               title: string,
               descripton: string,
@@ -21,7 +22,7 @@ export class ProjectModel {
               duration: number,
               sectors: SectorModel[],
               location: Location[]) {
-
+this.id=id;
     this.code = code;
     this.title = title;
     this.descripton = descripton;

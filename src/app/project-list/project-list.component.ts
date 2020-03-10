@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import {DummyProjectService} from '../services/impl/dummy-project.service';
 import {ProjectService} from '../services/project.service';
+import {ProjectViewModel} from '../model/project-view.model';
 
 @Component({
   selector: 'app-project-list',
@@ -17,19 +18,24 @@ export class ProjectListComponent implements OnInit {
 
   displayedColumns: string[] = ['name','X'];
   // projects:ProjectModel[] =this.service.getProjects();
-  dataSource = new MatTableDataSource();
+
   ngOnInit(): void {
     this.getElementData()
+
   }
 
+  dataSource = new MatTableDataSource();
   private getElementData(): void {
+
     this.service.getProjects().subscribe(res => {
       this.dataSource.data = res;
     });
   }
 
-  // onDelate(){
-  //   this.service.deleteProject()
-  // }
-
+  f(id:number) {
+      this.service.deleteProject(id).subscribe();
+    this.service.getProjects().subscribe(res => {
+      this.dataSource.data = res;
+    });
+  }
 }

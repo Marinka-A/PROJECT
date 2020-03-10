@@ -14,7 +14,7 @@ export class SampleComponent implements OnInit,OnDestroy,DoCheck {
 
   constructor(private fb:FormBuilder, public classifier:ClassifiersSevice) { }
 
-  implementationStatus = this.classifier.getClassifiers("implimentationStatus");
+
 
 
   start;

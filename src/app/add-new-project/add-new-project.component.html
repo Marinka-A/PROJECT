@@ -4,10 +4,10 @@
 <form [formGroup]="myForm">
 
   <mat-form-field>
-    <mat-label>Project Code</mat-label>
-    <input matInput formControlName="code" >
-  </mat-form-field>
-<br>
+  <mat-label>Project Code</mat-label>
+  <input matInput formControlName="code" >
+</mat-form-field>
+  <br>
 
   <mat-form-field>
     <mat-label>Project Title</mat-label>
@@ -29,8 +29,8 @@
   <mat-form-field style="width: 250px; height: 25px" name="select">
     <mat-label> Implementation Status:</mat-label>
     <mat-select  formControlName="status">
-      <mat-option>
-
+      <mat-option *ngFor="let i of impStatus">
+                        {{i.name}}
       </mat-option>
     </mat-select>
   </mat-form-field>
@@ -64,8 +64,8 @@
   <mat-form-field style="width: 250px; height: 25px" name="select">
     <mat-label> SECTOR</mat-label>
     <mat-select  formControlName="sect">
-      <mat-option>
-
+      <mat-option *ngFor="let y of sectors">
+{{y.name}}
       </mat-option>
     </mat-select>
   </mat-form-field>
@@ -79,7 +79,7 @@
   <br><br>
   <div>
     <h2>Project Location</h2>
-    <button type="button" class="btn btn-success"  style="margin-left: 50px" >ADD</button>
+    <button type="button" class="btn btn-success"  style="margin-left: 50px" (click)="openDialog()" >ADD</button>
   </div>
 
 </form>

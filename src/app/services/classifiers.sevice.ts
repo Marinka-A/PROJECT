@@ -45,19 +45,31 @@ Location_Country:ClassifiersModel[]=[
     new ClassifiersModel(5,"Belsh"),
     new ClassifiersModel(6,"Peqin"),
   ]
+//
+// getClassifiers(name:string){
+//   switch (name) {
+//     case 'implimentationStatus':
+//       return this.Implementation_Status;
+//     case 'sectors':
+//       return this.Sectors;
+//     case 'country':
+//       return this.Location_Country;
+//     case 'district':
+//       return this.Location_District;
+//   }
+// }
 
-getClassifiers(name:string){
-  switch (name) {
-    case 'implimentationStatus':
-      return this.Implementation_Status;
-    case 'sectors':
-      return this.Sectors;
-    case 'country':
-      return this.Location_Country;
-    case 'district':
-      return this.Location_District;
-  }
+getImplementationStatus(){
+  return this.Implementation_Status;
 }
-
+getSectors(){
+  return this.Sectors;
+}
+getCountry(){
+  return this.Location_Country
+}
+getDistrict(){
+  return this.Location_District
+}
 
 }
