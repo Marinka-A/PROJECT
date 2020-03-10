@@ -34,8 +34,7 @@ export class ProjectListComponent implements OnInit {
 
   f(id:number) {
       this.service.deleteProject(id).subscribe();
-    this.service.getProjects().subscribe(res => {
-      this.dataSource.data = res;
-    });
+    this.ngOnInit()
+
   }
 }
