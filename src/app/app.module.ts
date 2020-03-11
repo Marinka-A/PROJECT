@@ -29,8 +29,10 @@ import {DummyProjectService} from './services/impl/dummy-project.service';
 const appRoutes:Routes=[
   {path:'projects',component: ProjectListComponent},
   {path:'project',component:ProjectComponent},
+  {path: 'projects/:id', component: ProjectComponent},
   {path:'addlocation', component:CourseDialogComponent},
-  {path:'**', redirectTo:'/projects'}
+  {path:'**', redirectTo:'/projects'},
+
 ];
 @NgModule({
   declarations: [
