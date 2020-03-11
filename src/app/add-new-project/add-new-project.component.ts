@@ -6,6 +6,7 @@ import {ProjectModel} from '../model/project.model';
 import {ClassifiersSevice} from '../services/classifiers.sevice';
 import {CourseDialogComponent} from '../course-dialog/course-dialog.component';
 import {MatDatepickerInputEvent} from '@angular/material/datepicker';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-add-new-project',
@@ -17,7 +18,7 @@ export class ProjectComponent implements OnInit,DoCheck {
   public project: ProjectModel;
   impStatus;
   sectors;
-
+id:number;
   start
   end
   duration;
@@ -44,10 +45,10 @@ export class ProjectComponent implements OnInit,DoCheck {
 
 
 
-  constructor(private fb: FormBuilder, private projectService: ProjectService, private classifiers:ClassifiersSevice,private dialog: MatDialog) {
-    // let id = 1; //TODO routingic vercnel
+  constructor(private fb: FormBuilder, private projectService: ProjectService, private classifiers:ClassifiersSevice,private dialog: MatDialog,private route: ActivatedRoute) {
+    this.id = Number(this.route.snapshot.paramMap.get('id'));  //TODO routingic vercnel
     // if (id < 0) {
-    //   this.project =  new ProjectModel(12,"Project 2","desc",1,new Date(),new Date,1,[],[]);
+    //   this.project =  new ProjectModel(12,22,"Project 2","desc",1,new Date(),new Date,1,[],[]);
     // } else {
     //   this.projectService.getProjectById(id).subscribe(res => {
     //     this.project = res;
@@ -60,14 +61,14 @@ export class ProjectComponent implements OnInit,DoCheck {
     this.impStatus=this.classifiers.getImplementationStatus();
     this.sectors=this.classifiers.getSectors();
     this.myForm = this.fb.group({
-      code: [this.projectService.getProjectById(1).code],
-      title: [this.projectService.getProjectById(1).title],
-      description: [this.projectService.getProjectById(1).descripton],
-      status: [this.projectService.getProjectById(1).implementationStatusId],
-      startDate: [this.projectService.getProjectById(1).plannedStartDate],
-      endDate: [this.projectService.getProjectById(1).plannedEndDate],
-      duration: [this.projectService.getProjectById(1).duration],
-      sect: [this.projectService.getProjectById(1).sectors],
+      code: [this.projectService.getProjectById(this.id).code],
+      title: [this.projectService.getProjectById(this.id).title],
+      description: [this.projectService.getProjectById(this.id).descripton],
+      status: [this.projectService.getProjectById(this.id).implementationStatusId],
+      startDate: [this.projectService.getProjectById(this.id).plannedStartDate],
+      endDate: [this.projectService.getProjectById(this.id).plannedEndDate],
+      duration: [this.projectService.getProjectById(this.id).duration],
+      sect: [this.projectService.getProjectById(this.id).sectors],
       percent: [''],
 
     });
