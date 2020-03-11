@@ -60,14 +60,14 @@ export class ProjectComponent implements OnInit,DoCheck {
     this.impStatus=this.classifiers.getImplementationStatus();
     this.sectors=this.classifiers.getSectors();
     this.myForm = this.fb.group({
-      code: [''],
-      title: [''],
-      description: [''],
-      status: [''],
-      startDate: [''],
-      endDate: [''],
-      duration: [''],
-      sect: [''],
+      code: [this.projectService.getProjectById(1).code],
+      title: [this.projectService.getProjectById(1).title],
+      description: [this.projectService.getProjectById(1).descripton],
+      status: [this.projectService.getProjectById(1).implementationStatusId],
+      startDate: [this.projectService.getProjectById(1).plannedStartDate],
+      endDate: [this.projectService.getProjectById(1).plannedEndDate],
+      duration: [this.projectService.getProjectById(1).duration],
+      sect: [this.projectService.getProjectById(1).sectors],
       percent: [''],
 
     });
