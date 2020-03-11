@@ -6,7 +6,7 @@ import {Observable} from 'rxjs';
 export abstract class ProjectService {
   abstract getProjectById(id: number): ProjectModel ;
 
-  abstract getProjects(): Observable<ProjectModel[]>;
+  abstract getProjects(): Observable<ProjectViewModel[]>;
 
   abstract addProject(projectModel: ProjectModel): Observable<Response>;
 

@@ -19,13 +19,14 @@ let projectViewList: ProjectViewModel[];
   // new ProjectViewModel(3, 'Project 3'),
   // new ProjectViewModel(4, 'Project 4'),];
 
-// for(let i of projectList){
-//   projectViewList=[new ProjectViewModel(i.id,i.title)]
-// }
+
 
 export class DummyProjectService extends ProjectService {
   project: ProjectModel;
 
+  private getProjectViewList() {
+    projectViewList = projectList.map(project => new ProjectViewModel(project.id, project.title))
+  }
   getProjectById(id: number): ProjectModel {
     this.project = projectList.find(item => item.id == id);
     return this.project;
@@ -33,8 +34,9 @@ export class DummyProjectService extends ProjectService {
   }
 
 
-  getProjects(): Observable<ProjectModel[]> {
-    return of(projectList);
+  getProjects(): Observable<ProjectViewModel[]> {
+    this.getProjectViewList()
+    return of(projectViewList);
   }
 
   deleteProject(id: number): Observable<Response> {
