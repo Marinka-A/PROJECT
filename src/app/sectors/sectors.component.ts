@@ -13,7 +13,7 @@ export class SectorsComponent implements OnInit {
   constructor(private fb: FormBuilder, public cl: ClassifiersSevice) {
   }
 
-  sector = this.cl.getClassifiers('sectors');
+  // sector = this.cl.getClassifiers('sectors');
 
 
   ngOnInit(): void {

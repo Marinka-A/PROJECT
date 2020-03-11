@@ -38,7 +38,7 @@
 
     <mat-form-field style="margin-left: 50px">
       <mat-label >Start date</mat-label>
-      <input matInput [matDatepicker]="picker" formControlName="startDate">
+      <input matInput [matDatepicker]="picker"  formControlName="startDate"  [(ngModel)]="start">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
@@ -46,7 +46,7 @@
 
   <mat-form-field style="margin-left: 50px">
     <mat-label >End date</mat-label>
-    <input matInput [matDatepicker]="picker1" formControlName="endDate">
+    <input matInput [matDatepicker]="picker1" formControlName="endDate" [(ngModel)]="end" >
     <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
     <mat-datepicker #picker1></mat-datepicker>
   </mat-form-field>
@@ -55,12 +55,13 @@
 
     <mat-form-field style="margin-left: 50px">
       <mat-label>Duration</mat-label>
-      <input matInput formControlName="duration">
+      <input matInput formControlName="duration" [value]="duration" [(ngModel)]="duration">
     </mat-form-field>
 
 <br><br><br><br>
 <div>
   <h2>Sector</h2>
+
   <mat-form-field style="width: 250px; height: 25px" name="select">
     <mat-label> SECTOR</mat-label>
     <mat-select  formControlName="sect">

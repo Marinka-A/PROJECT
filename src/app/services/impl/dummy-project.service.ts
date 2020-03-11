@@ -13,12 +13,15 @@ let projectList = [new ProjectModel(1, 11, 'Project 1', 'desc', 1, new Date(), n
   new ProjectModel(6, 16, 'Project 6', 'desc', 1, new Date(), new Date, 1, [], []),
   new ProjectModel(7, 17, 'Project 7', 'desc', 1, new Date(), new Date, 1, [], []),
 ];
-let projectViewList: ProjectViewModel[] = [new ProjectViewModel(1, 'Project 1'),
-  new ProjectViewModel(2, 'Project 2'),
-  new ProjectViewModel(3, 'Project 3'),
-  new ProjectViewModel(4, 'Project 4'),];
+let projectViewList: ProjectViewModel[];
+  // [new ProjectViewModel(1, 'Project 1'),
+  // new ProjectViewModel(2, 'Project 2'),
+  // new ProjectViewModel(3, 'Project 3'),
+  // new ProjectViewModel(4, 'Project 4'),];
 
-
+// for(let i of projectList){
+//   projectViewList=[new ProjectViewModel(i.id,i.title)]
+// }
 
 export class DummyProjectService extends ProjectService {
   project: ProjectModel;
