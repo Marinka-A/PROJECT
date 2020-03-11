@@ -40,12 +40,8 @@ export class ProjectComponent implements OnInit,DoCheck {
       this.duration=`${difDate}`
     }
   }
-  f1(start,duration){
-    if(start && duration){
-      start=new Date(this.start)
-      this.end=
-    }
-  }
+
+
 
 
   constructor(private fb: FormBuilder, private projectService: ProjectService, private classifiers:ClassifiersSevice,private dialog: MatDialog) {
