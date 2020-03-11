@@ -47,13 +47,14 @@ id:number;
 
   constructor(private fb: FormBuilder, private projectService: ProjectService, private classifiers:ClassifiersSevice,private dialog: MatDialog,private route: ActivatedRoute) {
     this.id = Number(this.route.snapshot.paramMap.get('id'));  //TODO routingic vercnel
-    // if (id < 0) {
-    //   this.project =  new ProjectModel(12,22,"Project 2","desc",1,new Date(),new Date,1,[],[]);
-    // } else {
-    //   this.projectService.getProjectById(id).subscribe(res => {
-    //     this.project = res;
-    //   });
-    // }
+     if (this.id < 0) {
+     this.project =  new ProjectModel(12,22,"Project 2","desc",1,new Date(),new Date,1,[],[]);
+   }
+   else if (this.projectService.getProjectById(this.id)) {
+      this.projectService.getProjectById(this.id).subscribe(res => {
+        this.project = res;
+      });
+    }
   }
 
   ngOnInit() {
@@ -61,14 +62,14 @@ id:number;
     this.impStatus=this.classifiers.getImplementationStatus();
     this.sectors=this.classifiers.getSectors();
     this.myForm = this.fb.group({
-      code: [this.projectService.getProjectById(this.id).code],
-      title: [this.projectService.getProjectById(this.id).title],
-      description: [this.projectService.getProjectById(this.id).descripton],
-      status: [this.projectService.getProjectById(this.id).implementationStatusId],
-      startDate: [this.projectService.getProjectById(this.id).plannedStartDate],
-      endDate: [this.projectService.getProjectById(this.id).plannedEndDate],
-      duration: [this.projectService.getProjectById(this.id).duration],
-      sect: [this.projectService.getProjectById(this.id).sectors],
+      code: [this.project.code],
+      title: [this.project.title],
+      description: [this.project.descripton],
+      status: [this.project.implementationStatusId],
+      startDate: [this.project.plannedStartDate],
+      endDate: [this.project.plannedEndDate],
+      duration: [this.project.duration],
+      sect: [this.project.sectors],
       percent: [''],
 
     });

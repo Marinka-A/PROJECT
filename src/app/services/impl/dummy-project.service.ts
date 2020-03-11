@@ -27,9 +27,9 @@ export class DummyProjectService extends ProjectService {
   private getProjectViewList() {
     projectViewList = projectList.map(project => new ProjectViewModel(project.id, project.title))
   }
-  getProjectById(id: number): ProjectModel {
+  getProjectById(id: number): Observable<ProjectModel> {
     this.project = projectList.find(item => item.id == id);
-    return this.project;
+    return of(this.project);
 
   }
 
@@ -40,15 +40,16 @@ export class DummyProjectService extends ProjectService {
   }
 
   deleteProject(id: number): Observable<Response> {
-    let index: number = projectList.indexOf(this.getProjectById(id));
-    if (index >= 0) {
-      projectList.splice(index, 1);
-      console.log(projectList);
-      return of({status: true});
-    } else {
-      return of({status: false});
+    const filtered =projectList.filter(project => project.id !== id);
+    if (filtered.length < projectList.length) {
+      projectList = filtered;
+      return of({status:true});
     }
+
+    return of({status:true});
+
   }
+
 
   addProject(project: ProjectModel): Observable<Response> {
     projectList.push(project);

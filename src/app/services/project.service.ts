@@ -4,7 +4,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 
 export abstract class ProjectService {
-  abstract getProjectById(id: number): ProjectModel ;
+  abstract getProjectById(id: number): Observable<ProjectModel> ;
 
   abstract getProjects(): Observable<ProjectViewModel[]>;
 
