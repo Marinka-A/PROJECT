@@ -19,5 +19,5 @@ export abstract class ProjectService {
 export interface Response {
   status?: boolean;
   validations?: string[];
-  newId?: number
+  newId?: number;
 }

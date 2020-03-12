@@ -12,7 +12,7 @@ export class ProjectModel {
   sectors: SectorModel[];
   location: Location[];
 
-  constructor(id:number,
+  constructor(
               code: any,
               title: string,
               descripton: string,
@@ -21,7 +21,8 @@ export class ProjectModel {
               plannedEndDate: Date,
               duration: number,
               sectors: SectorModel[],
-              location: Location[]) {
+              location: Location[],
+              id?:number,) {
 this.id=id;
     this.code = code;
     this.title = title;

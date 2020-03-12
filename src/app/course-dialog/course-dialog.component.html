@@ -1,10 +1,12 @@
 <div style=" background-color:rgba(255, 255, 255, 1);padding: 20px; height: 500px; width: 350px; font-family: Roboto; color: rgba(117, 117, 117, 0.866666666666667)">
+
+  <form [formGroup]="formLocation">
   <h3>Add Project Location   </h3>
   <mat-icon aria-hidden="false" style="padding-left: 90%"  mat-dialog-close>X</mat-icon>
   <mat-form-field style="width: 250px; height: 25px" >
     <mat-label>  Country* </mat-label>
-    <mat-select >
-      <mat-option *ngFor="let i of locationCountry">
+    <mat-select formControlName="locationCountry" (valueChange)="ff($event)">
+      <mat-option *ngFor="let i of locationCountry" [value]="i.id" >
         {{i.name}}
       </mat-option>
     </mat-select>
@@ -14,8 +16,8 @@
   <br>
   <mat-form-field style="width: 250px; height: 25px" >
     <mat-label>  District* </mat-label>
-    <mat-select >
-      <mat-option *ngFor="let i of locationDistrict">
+    <mat-select formControlName="locationDistrict">
+      <mat-option *ngFor="let i of locationDistrict" [value]="i.id">
         {{i.name}}
       </mat-option>
     </mat-select>
@@ -25,10 +27,10 @@
   <br>
   <mat-form-field style="margin-left: 50px">
     <mat-label>  % </mat-label>
-    <input matInput>
+    <input matInput formControlName="percent">
   </mat-form-field>
   <br>  <br>  <br>
-  <button type="button" class="btn btn-success">ADD</button>
-
+  <button type="button" class="btn btn-success" (click)="locationAdd()">ADD</button>
+  </form>
 </div>
 

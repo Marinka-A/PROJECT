@@ -37,4 +37,5 @@ export class ProjectListComponent implements OnInit {
     this.ngOnInit()
 
   }
+
 }

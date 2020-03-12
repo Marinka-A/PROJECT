@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ClassifiersModel} from '../model/classifiers.model';
+import {DistrictClassifiers} from '../model/district-classifiers.model';
 
 @Injectable({
   providedIn:'root'
@@ -37,14 +38,14 @@ Location_Country:ClassifiersModel[]=[
   new ClassifiersModel(4,"Elbasan"),
   new ClassifiersModel(5,"Fier"),
 ]
-  Location_District:ClassifiersModel[]=[
-    new ClassifiersModel(1,"Berat"),
-    new ClassifiersModel(2,"Skrapar"),
-    new ClassifiersModel(3,"Klos"),
-    new ClassifiersModel(4,"Mat"),
-    new ClassifiersModel(5,"Belsh"),
-    new ClassifiersModel(6,"Peqin"),
-  ]
+  Location_District:DistrictClassifiers[]=[
+    new DistrictClassifiers(1,"Berat",1),
+    new DistrictClassifiers(2,"Skrapar",2),
+    new DistrictClassifiers(3,"Klos",2),
+    new DistrictClassifiers(4,"Mat",3),
+    new DistrictClassifiers(5,"Belsh",4),
+    new DistrictClassifiers(6,"Peqin",5),
+  ];
 //
 // getClassifiers(name:string){
 //   switch (name) {
@@ -71,5 +72,14 @@ getCountry(){
 getDistrict(){
   return this.Location_District
 }
+  f(id: number): DistrictClassifiers[]{
+    let arr: DistrictClassifiers[] = [];
+    for(let district of this.Location_District){
+      if(district.countryId == id){
+        arr.push(district);
+      }
+    }
+    return arr;
+  }
 
 }

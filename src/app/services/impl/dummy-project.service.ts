@@ -5,13 +5,13 @@ import {ProjectViewModel} from '../../model/project-view.model';
 import {Injectable} from '@angular/core';
 import {Response} from '../project.service';
 
-let projectList = [new ProjectModel(1, 11, 'Project 1', 'desc', 1, new Date(), new Date, 1, [], []),
-  new ProjectModel(2, 12, 'Project 2', 'desc', 1, new Date(), new Date, 1, [], []),
-  new ProjectModel(3, 13, 'Project 3', 'desc', 1, new Date(), new Date, 1, [], []),
-  new ProjectModel(4, 14, 'Project 4', 'desc', 1, new Date(), new Date, 1, [], []),
-  new ProjectModel(5, 15, 'Project 5', 'desc', 1, new Date(), new Date, 1, [], []),
-  new ProjectModel(6, 16, 'Project 6', 'desc', 1, new Date(), new Date, 1, [], []),
-  new ProjectModel(7, 17, 'Project 7', 'desc', 1, new Date(), new Date, 1, [], []),
+let projectList = [new ProjectModel( 11, 'Project 1', 'desc', 1, new Date(), new Date, 1, [], [],1),
+  new ProjectModel( 12, 'Project 2', 'desc', 1, new Date(), new Date, 1, [], [],2),
+  new ProjectModel( 13, 'Project 3', 'desc', 1, new Date(), new Date, 1, [], [],3),
+  new ProjectModel( 14, 'Project 4', 'desc', 1, new Date(), new Date, 1, [], [],4),
+  new ProjectModel(15, 'Project 5', 'desc', 1, new Date(), new Date, 1, [], [],5),
+  new ProjectModel( 16, 'Project 6', 'desc', 1, new Date(), new Date, 1, [], [],6),
+  new ProjectModel(17, 'Project 7', 'desc', 1, new Date(), new Date, 1, [], [],7),
 ];
 let projectViewList: ProjectViewModel[];
   // [new ProjectViewModel(1, 'Project 1'),
@@ -46,19 +46,18 @@ export class DummyProjectService extends ProjectService {
       return of({status:true});
     }
 
-    return of({status:true});
+    return of({status:false});
 
   }
 
 
   addProject(project: ProjectModel): Observable<Response> {
     projectList.push(project);
-    return of({status:true});
+
+    return of({newId:45});
   }
 
   updateProject(project: ProjectModel):Observable<Response> {
-
-
     return of();
   }
 

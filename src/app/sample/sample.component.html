@@ -1,58 +1,58 @@
-<div  style="margin: 120px 200px; background-color:rgba(255, 255, 255, 1);padding: 20px; height: 500px; width: 70%; font-family: Roboto; color: rgba(117, 117, 117, 0.866666666666667);" >
-  <p>SAMPLE</p>
-<form [formGroup]="myForm">
+<!--<div  style="margin: 120px 200px; background-color:rgba(255, 255, 255, 1);padding: 20px; height: 500px; width: 70%; font-family: Roboto; color: rgba(117, 117, 117, 0.866666666666667);" >-->
+<!--  <p>SAMPLE</p>-->
+<!--<form [formGroup]="myForm">-->
 
-<label>
-  Project Code:
-  <br>
-  <input type="text" formControlName="code"  #code name="code" required>
-</label>
-
-
-  <label style="margin-left: 50px">
-    Project Title:
-    <br>
-    <input type="text" formControlName="title" style="width: 849px"  name="title" required>
-  </label>
-
-<br><br>
-
-  <label>
-   Description:
-    <br>
-    <textarea type="text" formControlName="description" cols="150" rows="5" name="description"></textarea>
-  </label>
-  <br><br>
-
-  <label>
-    Implementation Status:
-    <br>
-    <select required="valid" formControlName="status" style="width: 250px; height: 25px" name="select">
-
-      <option  *ngFor="let s of implementationStatus">{{s.name}}</option>
-    </select >
-  </label>
-
-  <label style="margin-left: 50px">
-    Planned Start Date
-    <br>
-    <input type="date" required formControlName="startDate" [(ngModel)]="start" name="start">
-  </label>
-
-  <label style="margin-left: 50px">
-    Planned End Date:
-    <br>
-    <input type="date" formControlName="endDate" [(ngModel)]="end"  name="end">
-  </label>
-
-  <label style="margin-left: 50px">
-    Duartion:
-    <br>
-    <input type="text" formControlName="duration" [value]="duration" [(ngModel)]="duration"  name="duration">
-  </label>
+<!--<label>-->
+<!--  Project Code:-->
+<!--  <br>-->
+<!--  <input type="text" formControlName="code"  #code name="code" required>-->
+<!--</label>-->
 
 
+<!--  <label style="margin-left: 50px">-->
+<!--    Project Title:-->
+<!--    <br>-->
+<!--    <input type="text" formControlName="title" style="width: 849px"  name="title" required>-->
+<!--  </label>-->
+
+<!--<br><br>-->
+
+<!--  <label>-->
+<!--   Description:-->
+<!--    <br>-->
+<!--    <textarea type="text" formControlName="description" cols="150" rows="5" name="description"></textarea>-->
+<!--  </label>-->
+<!--  <br><br>-->
+
+<!--  <label>-->
+<!--    Implementation Status:-->
+<!--    <br>-->
+<!--    <select required="valid" formControlName="status" style="width: 250px; height: 25px" name="select">-->
+
+<!--      <option  *ngFor="let s of implementationStatus">{{s.name}}</option>-->
+<!--    </select >-->
+<!--  </label>-->
+
+<!--  <label style="margin-left: 50px">-->
+<!--    Planned Start Date-->
+<!--    <br>-->
+<!--    <input type="date" required formControlName="startDate" [(ngModel)]="start" name="start">-->
+<!--  </label>-->
+
+<!--  <label style="margin-left: 50px">-->
+<!--    Planned End Date:-->
+<!--    <br>-->
+<!--    <input type="date" formControlName="endDate" [(ngModel)]="end"  name="end">-->
+<!--  </label>-->
+
+<!--  <label style="margin-left: 50px">-->
+<!--    Duartion:-->
+<!--    <br>-->
+<!--    <input type="text" formControlName="duration" [value]="duration" [(ngModel)]="duration"  name="duration">-->
+<!--  </label>-->
 
 
-</form>
-</div>
+
+
+<!--</form>-->
+<!--</div>-->

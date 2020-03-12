@@ -53,7 +53,8 @@ const appRoutes:Routes=[
     ), MatButtonModule, MatTableModule, MatIconModule, MatDividerModule, MatInputModule, MatNativeDateModule, MatDatepickerModule, BrowserAnimationsModule, MatSelectModule,MatDialogModule
   ],
   providers: [
-    {provide:ProjectService,useClass:DummyProjectService}
+    {provide:ProjectService,useClass:DummyProjectService},
+    CourseDialogComponent
   ],
   bootstrap: [AppComponent]
 })

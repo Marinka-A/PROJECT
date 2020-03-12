@@ -1,6 +1,4 @@
 export class LocationModel{
-  locationId:number;
-  country:string;
-  district:string;
-  percent:number;
+  constructor(public country: number, public district: number, public  percent: number) {
+  }
 }

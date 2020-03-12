@@ -1,24 +1,29 @@
 
-<button type="button" class="btn btn-success"  style="margin-left: 50px" >Save </button>
-<button type="button" class="btn btn-success"  style="margin-left: 50px" >Cancel </button>
-<button type="button" class="btn btn-success"  style="margin-left: 50px" >Save & Close </button>
-<div  style="margin: 120px 200px; background-color:rgba(255, 255, 255, 1);padding: 20px;  width: 70%; font-family: Roboto; color: rgba(117, 117, 117, 0.866666666666667);" >
+<img src="../assets/Capture.png" width="100%" style="position: fixed;">
+<div style="height: 1px"></div>
+<div style="position: fixed; margin-left:70%; margin-top: 10px">
+<button type="button" class="btn btn-success" style="margin-left: 50px" (click)="saveButton()" >Save</button>
+<button type="button" class="btn btn-success" style="margin-left: 50px" routerLink="">Cancel</button>
+<button type="button" class="btn btn-success" style="margin-left: 50px" (click)="saveButton()" routerLink="">Save & Close</button>
+</div>
+<div
+  style="margin: 200px 200px; background-color:rgba(255, 255, 255, 1);padding: 20px;  width: 70%; font-family: Roboto; color: rgba(117, 117, 117, 0.866666666666667);">
 
-<h2>SAMPLE</h2>
-<form [formGroup]="myForm" >
+  <h2>SAMPLE</h2>
+  <form [formGroup]="myForm">
 
-  <mat-form-field>
-  <mat-label>Project Code</mat-label>
-  <input matInput formControlName="code" >
-</mat-form-field>
-  <br>
+    <mat-form-field>
+      <mat-label>Project Code</mat-label>
+      <input matInput formControlName="code">
+    </mat-form-field>
+    <br>
 
-  <mat-form-field>
-    <mat-label>Project Title</mat-label>
-    <input matInput formControlName="title">
-  </mat-form-field>
+    <mat-form-field>
+      <mat-label>Project Title</mat-label>
+      <input matInput formControlName="title">
+    </mat-form-field>
 
-  <br><br>
+    <br><br>
 
 
     <mat-form-field>
@@ -27,34 +32,33 @@
     </mat-form-field>
 
 
-  <br><br>
+    <br><br>
 
 
-  <mat-form-field style="width: 250px; height: 25px" name="select">
-    <mat-label> Implementation Status:</mat-label>
-    <mat-select  formControlName="status">
-      <mat-option *ngFor="let i of impStatus">
-                        {{i.name}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+    <mat-form-field style="width: 250px; height: 25px" name="select">
+      <mat-label> Implementation Status:</mat-label>
+      <mat-select formControlName="status">
+        <mat-option *ngFor="let i of impStatus" [value]="i.id">
+          {{i.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
 
     <mat-form-field style="margin-left: 50px">
-      <mat-label >Start date</mat-label>
-      <input matInput [matDatepicker]="picker"  formControlName="startDate"  [(ngModel)]="start">
+      <mat-label>Start date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="startDate" [(ngModel)]="start">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
 
-  <mat-form-field style="margin-left: 50px">
-    <mat-label >End date</mat-label>
-    <input matInput [matDatepicker]="picker1" formControlName="endDate" [(ngModel)]="end" >
-    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-    <mat-datepicker #picker1></mat-datepicker>
-  </mat-form-field>
-
+    <mat-form-field style="margin-left: 50px">
+      <mat-label>End date</mat-label>
+      <input matInput [matDatepicker]="picker1" formControlName="endDate" [(ngModel)]="end">
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
 
 
     <mat-form-field style="margin-left: 50px">
@@ -62,30 +66,56 @@
       <input matInput formControlName="duration" [value]="duration" [(ngModel)]="duration">
     </mat-form-field>
 
-<br><br><br><br>
-<div>
-  <h2>Sector</h2>
+    <br><br><br><br>
+    <div>
+      <h2>Sector</h2>
+      <table>
+        <tr *ngFor="let i of arr">
+          <td style="width: 400px; height: 50px">{{i.sector}}</td>
+          <td style="width: 300px; height: 50px">{{i.percent}}</td>
+        </tr>
+      </table>
+      <!--      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">-->
+      <!--        <ng-container matColumnDef="name">-->
+      <!--          <td mat-cell *matCellDef="let element"> {{element.sector}} </td>-->
+      <!--        </ng-container>-->
+      <!--        <ng-container matColumnDef="X">-->
 
-  <mat-form-field style="width: 250px; height: 25px" name="select">
-    <mat-label> SECTOR</mat-label>
-    <mat-select  formControlName="sect">
-      <mat-option *ngFor="let y of sectors">
-{{y.name}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+      <!--          <td mat-cell *matCellDef="let element">{{element.percent}}-->
+      <!--          </td>-->
+      <!--        </ng-container>-->
 
-    <mat-form-field style="margin-left: 50px">
-      <input matInput formControlName="percent">
-    </mat-form-field>
-    <button type="button" class="btn btn-success"  style="margin-left: 50px" >ADD</button>
+      <!--        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>-->
+      <!--        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>-->
+      <!--      </table>-->
 
-</div>
-  <br><br>
-  <div>
-    <h2>Project Location</h2>
-    <button type="button" class="btn btn-success"  style="margin-left: 50px" (click)="openDialog()" >ADD</button>
-  </div>
+      <mat-form-field style="width: 250px; height: 25px" name="select">
+        <mat-label> SECTOR</mat-label>
+        <mat-select formControlName="sect">
+          <mat-option *ngFor="let y of sectors" [value]="y.name">
+            {{y.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-</form>
+      <mat-form-field style="margin-left: 50px;margin-top: 50px">
+        <input matInput formControlName="percent">
+      </mat-form-field>
+      <button class="btn btn-success" style="margin-left: 50px" type="button" (click)="sectorsAdd()">ADD</button>
+
+    </div>
+    <br><br>
+    <div>
+      <h2>Project Location</h2>
+            <table>
+              <tr *ngFor="let a of dialogComp.arr1">
+                <td style="width: 400px; height: 50px">{{a.country}}</td>
+                <td style="width: 300px; height: 50px">{{a.district}}</td>
+                <td style="width: 300px; height: 50px">{{a.percent}}</td>
+              </tr>
+            </table>
+      <button type="button" class="btn btn-success" style="margin-left: 50px" (click)="openDialog()">ADD</button>
+    </div>
+
+  </form>
 </div>
