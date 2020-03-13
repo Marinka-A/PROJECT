@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {ClassifiersSevice} from '../services/classifiers.sevice';
 import {FormBuilder, Validators} from '@angular/forms';
 import {LocationModel} from '../model/location.model';
 import {SectorModel} from '../model/sector.model';
 import {ProjectComponent} from '../add-new-project/add-new-project.component';
+import {Observable, of} from 'rxjs';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+
+
 
 @Component({
   selector: 'app-course-dialog',
@@ -13,17 +17,20 @@ import {ProjectComponent} from '../add-new-project/add-new-project.component';
 export class CourseDialogComponent implements OnInit {
   locationCountry;
   locationDistrict;
-arr1:LocationModel[]=[];
+
   ngOnInit(): void {
-    this.locationAdd()
+
     this.locationCountry = this.classifier.getCountry();
+    this.locationDistrict = this.classifier.getDistrict()
   }
 
-  constructor( public classifier:ClassifiersSevice,private fb:FormBuilder) { }
+  constructor( public dialogRef: MatDialogRef<CourseDialogComponent>,public classifier:ClassifiersSevice,private fb:FormBuilder){
 
-  ff(id: number){
-    this.locationDistrict= this.classifier.f(id);
   }
+
+
+
+
 
   formLocation = this.fb.group({
     locationCountry: ['',Validators.required],
@@ -33,10 +40,11 @@ arr1:LocationModel[]=[];
 
   locationAdd(){
     if (this.formLocation.value.locationCountry && this.formLocation.value.locationDistrict ) {
-      console.log(111111111111111111111111111111111111111111)
-      this.arr1.push(new LocationModel(this.formLocation.value.locationCountry, this.formLocation.value.locationDistrict,this.formLocation.value.percent));
+
+      this.dialogRef.close(new LocationModel(this.formLocation.value.locationCountry, this.formLocation.value.locationDistrict,this.formLocation.value.percent))
     }
-    console.log(this.arr1);
   }
+
+
 
 }

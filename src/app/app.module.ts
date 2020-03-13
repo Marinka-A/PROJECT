@@ -20,7 +20,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatSelectModule} from '@angular/material/select';
-import {MatDialogModule} from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import { CourseDialogComponent } from './course-dialog/course-dialog.component';
 import {ProjectService} from './services/project.service';
 import {DummyProjectService} from './services/impl/dummy-project.service';
@@ -30,7 +30,6 @@ const appRoutes:Routes=[
   {path:'projects',component: ProjectListComponent},
   {path:'project',component:ProjectComponent},
   {path: 'projects/:id', component: ProjectComponent},
-  {path:'addlocation', component:CourseDialogComponent},
   {path:'**', redirectTo:'/projects'},
 
 ];
@@ -54,7 +53,6 @@ const appRoutes:Routes=[
   ],
   providers: [
     {provide:ProjectService,useClass:DummyProjectService},
-    CourseDialogComponent
   ],
   bootstrap: [AppComponent]
 })

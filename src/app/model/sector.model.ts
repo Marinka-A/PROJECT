@@ -1,10 +1,10 @@
 export class SectorModel {
-  sectorId: number;
-  sector:string;
+  sector: number;
   percent: number;
 
-  constructor(sector:string, percent: number) {
-    this.sector = sector;
+  constructor(id:number, percent: number) {
+    this.sector = id;
     this.percent = percent;
+
   }
 }

@@ -1,11 +1,15 @@
 <div style=" background-color:rgba(255, 255, 255, 1);padding: 20px; height: 500px; width: 350px; font-family: Roboto; color: rgba(117, 117, 117, 0.866666666666667)">
 
-  <form [formGroup]="formLocation">
-  <h3>Add Project Location   </h3>
-  <mat-icon aria-hidden="false" style="padding-left: 90%"  mat-dialog-close>X</mat-icon>
+  <form [formGroup]="formLocation" (ngSubmit)="locationAdd()" >
+    <h1 mat-dialog-title style="position: absolute">Add Project Location</h1>
+
+    <button mat-icon-button mat-dialog-close="true" style="margin-left: 300px">
+      <mat-icon>X</mat-icon>
+    </button>
+
   <mat-form-field style="width: 250px; height: 25px" >
     <mat-label>  Country* </mat-label>
-    <mat-select formControlName="locationCountry" (valueChange)="ff($event)">
+    <mat-select formControlName="locationCountry" >
       <mat-option *ngFor="let i of locationCountry" [value]="i.id" >
         {{i.name}}
       </mat-option>
@@ -30,7 +34,7 @@
     <input matInput formControlName="percent">
   </mat-form-field>
   <br>  <br>  <br>
-  <button type="button" class="btn btn-success" (click)="locationAdd()">ADD</button>
+  <button type="submit" class="btn btn-success"  (click)="locationAdd()"  >ADD</button>
   </form>
 </div>
 

@@ -13,6 +13,7 @@
 
 body{
   background-color: rgba(215, 215, 215, 1);
+  font-family: Roboto;
 }
 mat-icon {
   cursor: pointer;

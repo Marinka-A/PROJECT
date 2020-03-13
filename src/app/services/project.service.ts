@@ -13,6 +13,7 @@ export abstract class ProjectService {
   abstract deleteProject(id: number): Observable<Response>;
 
   abstract updateProject(project: ProjectModel):Observable<Response>;
+   abstract getNewProject():Observable<ProjectModel>;
 
 }
 

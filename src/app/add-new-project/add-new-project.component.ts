@@ -27,14 +27,66 @@ export class ProjectComponent implements OnInit, DoCheck {
   end;
   duration;
   erkarutyun;
+  sectForm;
+  locations: LocationModel[] = [new LocationModel()];
+  arr: SectorModel[] = [];
 
-  startEvent(event: any) {
-    return event.value;
+
+  constructor(private fb: FormBuilder, private projectService: ProjectService, private classifiers: ClassifiersSevice, private dialog: MatDialog, private route: ActivatedRoute) {
+    this.id = Number(this.route.snapshot.paramMap.get('id'));
+    if (this.id < 0) {
+      this.project = new ProjectModel(null, '', '', null, null, null, null, [], []);
+
+    } else if (this.projectService.getProjectById(this.id)) {
+      this.projectService.getProjectById(this.id).subscribe(res => {
+        this.project = res;
+        this.arr = this.project.sectors;
+        this.locations = this.project.location;
+      });
+    }
+    this.projectService.getProjects().subscribe(res =>
+      this.erkarutyun = res.length + 1
+    );
+
+
   }
 
-  endEvent(event: any) {
-    return event.value;
+
+  saveButton() {
+    if (this.id < 0) {
+      this.projectService.addProject(new ProjectModel(this.myForm.value.code, this.myForm.value.title, this.myForm.value.description, this.myForm.value.status, this.myForm.value.startDate,
+        this.myForm.value.endDate, this.myForm.value.duration, this.arr, this.locations, this.erkarutyun++));
+    } else {
+      this.projectService.deleteProject(this.id);
+      this.projectService.addProject(new ProjectModel(this.myForm.value.code, this.myForm.value.title, this.myForm.value.description, this.myForm.value.status, this.myForm.value.startDate,
+        this.myForm.value.endDate, this.myForm.value.duration, this.arr, this.locations, this.id));
+    }
   }
+
+
+  ngOnInit() {
+    console.log(22222222222);
+    this.locations = this.project.location;
+    this.impStatus = this.classifiers.getImplementationStatus();
+    this.sectors = this.classifiers.getSectors();
+    this.locations = this.project.location;
+    this.myForm = this.fb.group({
+      code: [this.project.code, Validators.required],
+      title: [this.project.title, Validators.required],
+      description: [this.project.descripton],
+      status: [this.project.implementationStatusId, Validators.required],
+      startDate: [this.project.plannedStartDate, Validators.required],
+      endDate: [this.project.plannedEndDate],
+      duration: [this.project.duration]
+    });
+
+
+    this.sectForm = this.fb.group({
+      sector: [],
+      percent: [],
+    });
+  }
+
 
   f(start, end) {
     if (start && end) {
@@ -46,81 +98,34 @@ export class ProjectComponent implements OnInit, DoCheck {
     }
   }
 
-
-
-  constructor(private fb: FormBuilder, private projectService: ProjectService, private classifiers: ClassifiersSevice,public dialogComp: CourseDialogComponent, private dialog: MatDialog, private route: ActivatedRoute) {
-    this.id = Number(this.route.snapshot.paramMap.get('id'));  //TODO routingic vercnel
-    if (this.id < 0) {
-      this.project = new ProjectModel(null, '', '', null, null, null, null, null, null);
-
-    } else if (this.projectService.getProjectById(this.id)) {
-      this.projectService.getProjectById(this.id).subscribe(res => {
-        this.project = res;
-      });
-    }
-    this.projectService.getProjects().subscribe(res =>
-      this.erkarutyun = res.length + 1
-    );
-  }
-
-
-  saveButton() {
-    if (this.id < 0) {
-      this.projectService.addProject(new ProjectModel(this.myForm.value.code, this.myForm.value.title, this.myForm.value.description, this.myForm.value.status, this.myForm.value.startDate,
-        this.myForm.value.endDate, this.myForm.value.duration, this.myForm.value.sect, [], this.erkarutyun++));
-    } else {
-      this.projectService.deleteProject(this.id);
-      this.projectService.addProject(new ProjectModel(this.myForm.value.code, this.myForm.value.title, this.myForm.value.description, this.myForm.value.status, this.myForm.value.startDate,
-        this.myForm.value.endDate, this.myForm.value.duration, this.myForm.value.sect, [], this.id));
-    }
-  }
-
-  zangvac:LocationModel[]=[];
-  fff(){
-    this.dialogComp.arr1
-  }
-  ngOnInit() {
-    console.log(22222222222)
-console.log(this.zangvac)
-    this.impStatus = this.classifiers.getImplementationStatus();
-    this.sectors = this.classifiers.getSectors();
-    this.myForm = this.fb.group({
-      code: [this.project.code, Validators.required],
-      title: [this.project.title, Validators.required],
-      description: [this.project.descripton],
-      status: [this.project.implementationStatusId, Validators.required],
-      startDate: [this.project.plannedStartDate, Validators.required],
-      endDate: [this.project.plannedEndDate],
-      duration: [this.project.duration],
-      sect: [this.project.sectors],
-      percent: ['', Validators.max(100)],
-
-    });
-  }
-
-
-  openDialog() {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    this.dialog.open(CourseDialogComponent, dialogConfig);
-  }
-
   ngDoCheck(): void {
     this.f(this.start, this.end);
 
   }
 
-  arr: SectorModel[] = [];
-
-
   sectorsAdd() {
-    if (this.myForm.value.sect && this.myForm.value.percent) {
-      this.arr.push(new SectorModel(this.myForm.value.sect, this.myForm.value.percent));
+    if (this.sectForm.value.sector && this.sectForm.value.percent) {
+      this.arr.push(this.sectForm.value);
     }
     console.log(this.arr);
   }
 
+  getSectorName(id: number) {
+    return this.classifiers.getSector(id);
 
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(CourseDialogComponent, {
+      width: '400px',
+
+    });
+
+  dialogRef.afterClosed().subscribe(result => {
+    this.locations.push(result);
+  });
+
+  }
 }
 
 

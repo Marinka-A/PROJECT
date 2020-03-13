@@ -1,4 +1,5 @@
 import {SectorModel} from './sector.model';
+import {LocationModel} from './location.model';
 
 export class ProjectModel {
   id:number;
@@ -10,7 +11,7 @@ export class ProjectModel {
   plannedEndDate: Date;
   duration: number;
   sectors: SectorModel[];
-  location: Location[];
+  location: LocationModel[];
 
   constructor(
               code: any,
@@ -21,7 +22,7 @@ export class ProjectModel {
               plannedEndDate: Date,
               duration: number,
               sectors: SectorModel[],
-              location: Location[],
+              location: LocationModel[],
               id?:number,) {
 this.id=id;
     this.code = code;

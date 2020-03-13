@@ -63,8 +63,16 @@ Location_Country:ClassifiersModel[]=[
 getImplementationStatus(){
   return this.Implementation_Status;
 }
+
 getSectors(){
-  return this.Sectors;
+  return this.Sectors
+}
+getSector(id:number){
+  for(let obj of this.Sectors){
+    if(obj.id == id){
+      return obj.name;
+    }
+  }
 }
 getCountry(){
   return this.Location_Country
