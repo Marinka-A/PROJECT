@@ -1,10 +1,10 @@
-
+<ng-container *ngIf="isLoad">
 <img src="../assets/Capture.png" width="100%" style="position: fixed;z-index: 1">
 <div style="height: 1px"></div>
 <div style="position: fixed; margin-left:70%; margin-top: 10px;z-index: 1">
-<button type="button" class="btn btn-success" style="margin-left: 50px" (click)="saveButton()"  [disabled]="!myForm.valid">Save</button>
+<button type="button" class="btn btn-success" style="margin-left: 50px" (click)="saveButton()"  >Save</button>
 <button type="button" class="btn btn-success" style="margin-left: 50px" routerLink="">Cancel</button>
-<button type="button" class="btn btn-success" style="margin-left: 50px" (click)="saveButton()" routerLink="" [disabled]="!myForm.valid">Save & Close</button>
+<button type="button" class="btn btn-success" style="margin-left: 50px" (click)="saveButton()" routerLink="" >Save & Close</button>
 </div>
 <div style="margin: 200px 200px; background-color:rgba(255, 255, 255, 1);padding: 20px;  width: 70%;  color: rgba(117, 117, 117, 0.866666666666667);position: absolute">
 
@@ -124,3 +124,4 @@
 
 
 </div>
+</ng-container>

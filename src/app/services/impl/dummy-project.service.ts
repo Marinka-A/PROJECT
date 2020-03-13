@@ -6,6 +6,7 @@ import {Injectable} from '@angular/core';
 import {Response} from '../project.service';
 import {LocationModel} from '../../model/location.model';
 import {SectorModel} from '../../model/sector.model';
+import {delay} from 'rxjs/operators';
 
 let projectList = [
   new ProjectModel( 11, 'Project 1', 'desc', 1, new Date(), new Date, 1, [new SectorModel(1, 15)], [new LocationModel(1,1,10)],1),
@@ -29,7 +30,7 @@ export class DummyProjectService extends ProjectService {
   }
   getProjectById(id: number): Observable<ProjectModel> {
     this.project = projectList.find(item => item.id == id);
-    return of(this.project);
+    return of(this.project).pipe(delay(5000));
 
   }
 
@@ -43,7 +44,7 @@ export class DummyProjectService extends ProjectService {
     const filtered =projectList.filter(project => project.id !== id);
     if (filtered.length < projectList.length) {
       projectList = filtered;
-      return of({status:true});
+      return of({status:true}).pipe(delay(5000));
     }
 
     return of({status:false});
@@ -62,7 +63,7 @@ export class DummyProjectService extends ProjectService {
   }
 
   getNewProject(): Observable<ProjectModel> {
-    return undefined;
+    return of(new ProjectModel());
   }
 
 

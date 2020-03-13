@@ -14,15 +14,15 @@ export class ProjectModel {
   location: LocationModel[];
 
   constructor(
-              code: any,
-              title: string,
-              descripton: string,
-              implementationStatusId: number,
-              plannedStartDate: Date,
-              plannedEndDate: Date,
-              duration: number,
-              sectors: SectorModel[],
-              location: LocationModel[],
+              code?: any,
+              title?: string,
+              descripton?: string,
+              implementationStatusId?: number,
+              plannedStartDate?: Date,
+              plannedEndDate?: Date,
+              duration?: number,
+              sectors?: SectorModel[],
+              location?: LocationModel[],
               id?:number,) {
 this.id=id;
     this.code = code;

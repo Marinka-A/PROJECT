@@ -30,20 +30,10 @@ export class ProjectComponent implements OnInit, DoCheck {
   sectForm;
   locations: LocationModel[] = [new LocationModel()];
   arr: SectorModel[] = [];
-
+  isLoad=false;
 
   constructor(private fb: FormBuilder, private projectService: ProjectService, private classifiers: ClassifiersSevice, private dialog: MatDialog, private route: ActivatedRoute) {
-    this.id = Number(this.route.snapshot.paramMap.get('id'));
-    if (this.id < 0) {
-      this.project = new ProjectModel(null, '', '', null, null, null, null, [], []);
 
-    } else if (this.projectService.getProjectById(this.id)) {
-      this.projectService.getProjectById(this.id).subscribe(res => {
-        this.project = res;
-        this.arr = this.project.sectors;
-        this.locations = this.project.location;
-      });
-    }
     this.projectService.getProjects().subscribe(res =>
       this.erkarutyun = res.length + 1
     );
@@ -66,25 +56,42 @@ export class ProjectComponent implements OnInit, DoCheck {
 
   ngOnInit() {
     console.log(22222222222);
-    this.locations = this.project.location;
-    this.impStatus = this.classifiers.getImplementationStatus();
-    this.sectors = this.classifiers.getSectors();
-    this.locations = this.project.location;
-    this.myForm = this.fb.group({
-      code: [this.project.code, Validators.required],
-      title: [this.project.title, Validators.required],
-      description: [this.project.descripton],
-      status: [this.project.implementationStatusId, Validators.required],
-      startDate: [this.project.plannedStartDate, Validators.required],
-      endDate: [this.project.plannedEndDate],
-      duration: [this.project.duration]
-    });
+   // this.locations = this.project.location;
+   //  this.impStatus = this.classifiers.getImplementationStatus();
+     this.sectors = this.classifiers.getSectors();
+   // this.locations = this.project.location;
 
 
-    this.sectForm = this.fb.group({
-      sector: [],
-      percent: [],
-    });
+    this.id = Number(this.route.snapshot.paramMap.get('id'));
+    if (this.id < 0) {
+      this.project = new ProjectModel(null, '', '', null, null, null, null, [], []);
+this.isLoad=true;
+    } else  {
+      this.projectService.getProjectById(this.id).subscribe(res => {
+        this.project = res;
+        this.arr = this.project.sectors;
+        this.locations = this.project.location;
+        this.isLoad=true;
+        this.myForm = this.fb.group({
+          code: [this.project.code, Validators.required],
+          title: [this.project.title, Validators.required],
+          description: [this.project.descripton],
+          status: [this.project.implementationStatusId, Validators.required],
+          startDate: [this.project.plannedStartDate, Validators.required],
+          endDate: [this.project.plannedEndDate],
+          duration: [this.project.duration]
+        });
+        this.sectForm = this.fb.group({
+          sector: [],
+          percent: [],
+        });
+      });
+
+    }
+
+
+
+
   }
 
 
@@ -121,9 +128,9 @@ export class ProjectComponent implements OnInit, DoCheck {
 
     });
 
-  dialogRef.afterClosed().subscribe(result => {
-    this.locations.push(result);
-  });
+    dialogRef.afterClosed().subscribe(result => {
+      this.locations.push(result);
+    });
 
   }
 }
