@@ -57,7 +57,7 @@ export class ProjectComponent implements OnInit, DoCheck {
   ngOnInit() {
     console.log(22222222222);
    // this.locations = this.project.location;
-   //  this.impStatus = this.classifiers.getImplementationStatus();
+    this.impStatus = this.classifiers.getImplementationStatus();
      this.sectors = this.classifiers.getSectors();
    // this.locations = this.project.location;
 
@@ -65,26 +65,16 @@ export class ProjectComponent implements OnInit, DoCheck {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
     if (this.id < 0) {
       this.project = new ProjectModel(null, '', '', null, null, null, null, [], []);
-this.isLoad=true;
+      this.addForm()
+      this.isLoad=true;
     } else  {
       this.projectService.getProjectById(this.id).subscribe(res => {
         this.project = res;
         this.arr = this.project.sectors;
         this.locations = this.project.location;
         this.isLoad=true;
-        this.myForm = this.fb.group({
-          code: [this.project.code, Validators.required],
-          title: [this.project.title, Validators.required],
-          description: [this.project.descripton],
-          status: [this.project.implementationStatusId, Validators.required],
-          startDate: [this.project.plannedStartDate, Validators.required],
-          endDate: [this.project.plannedEndDate],
-          duration: [this.project.duration]
-        });
-        this.sectForm = this.fb.group({
-          sector: [],
-          percent: [],
-        });
+       this.addForm()
+
       });
 
     }
@@ -92,6 +82,21 @@ this.isLoad=true;
 
 
 
+  }
+  addForm(){
+    this.myForm = this.fb.group({
+      code: [this.project.code, Validators.required],
+      title: [this.project.title, Validators.required],
+      description: [this.project.descripton],
+      status: [this.project.implementationStatusId, Validators.required],
+      startDate: [this.project.plannedStartDate, Validators.required],
+      endDate: [this.project.plannedEndDate],
+      duration: [this.project.duration]
+    });
+    this.sectForm = this.fb.group({
+      sector: [],
+      percent: [],
+    });
   }
 
 
