@@ -24,6 +24,10 @@ import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from '@angular/material/
 import { CourseDialogComponent } from './course-dialog/course-dialog.component';
 import {ProjectService} from './services/project.service';
 import {DummyProjectService} from './services/impl/dummy-project.service';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import {MatSortModule} from '@angular/material/sort';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 const appRoutes:Routes=[
@@ -43,13 +47,15 @@ const appRoutes:Routes=[
     SampleComponent,
     ProjectComponent,
     ProjectListComponent,
-    CourseDialogComponent
+    CourseDialogComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule, RouterModule.forRoot(
       appRoutes,
       {enableTracing: true}
-    ), MatButtonModule, MatTableModule, MatIconModule, MatDividerModule, MatInputModule, MatNativeDateModule, MatDatepickerModule, BrowserAnimationsModule, MatSelectModule,MatDialogModule
+    ), MatButtonModule, MatTableModule, MatIconModule, MatDividerModule, MatInputModule, MatNativeDateModule,
+    MatDatepickerModule, BrowserAnimationsModule, MatSelectModule, MatDialogModule, MatSortModule, MatProgressBarModule, MatProgressSpinnerModule
   ],
   providers: [
     {provide:ProjectService,useClass:DummyProjectService},

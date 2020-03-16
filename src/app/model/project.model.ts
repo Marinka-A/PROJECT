@@ -9,7 +9,7 @@ export class ProjectModel {
   implementationStatusId: number;
   plannedStartDate: Date;
   plannedEndDate: Date;
-  duration: number;
+
   sectors: SectorModel[];
   location: LocationModel[];
 
@@ -20,7 +20,7 @@ export class ProjectModel {
               implementationStatusId?: number,
               plannedStartDate?: Date,
               plannedEndDate?: Date,
-              duration?: number,
+
               sectors?: SectorModel[],
               location?: LocationModel[],
               id?:number,) {
@@ -31,7 +31,7 @@ this.id=id;
     this.implementationStatusId = implementationStatusId;
     this.plannedStartDate = plannedStartDate;
     this.plannedEndDate = plannedEndDate;
-    this.duration = duration;
+
     this.sectors = sectors;
     this.location = location;
   }
