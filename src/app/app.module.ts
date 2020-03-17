@@ -55,7 +55,8 @@ const appRoutes:Routes=[
       appRoutes,
       {enableTracing: true}
     ), MatButtonModule, MatTableModule, MatIconModule, MatDividerModule, MatInputModule, MatNativeDateModule,
-    MatDatepickerModule, BrowserAnimationsModule, MatSelectModule, MatDialogModule, MatSortModule, MatProgressBarModule, MatProgressSpinnerModule
+    MatDatepickerModule, BrowserAnimationsModule, MatSelectModule, MatDialogModule, MatSortModule, MatProgressBarModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     {provide:ProjectService,useClass:DummyProjectService},
