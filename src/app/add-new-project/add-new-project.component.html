@@ -1,5 +1,5 @@
 <ng-container *ngIf="!isLoad"  >
-<mat-spinner></mat-spinner>
+  <mat-spinner></mat-spinner>
 </ng-container>
 <ng-container *ngIf="isLoad">
 <img src="../assets/Capture.png" width="100%" style="position: fixed;z-index: 1">
@@ -72,29 +72,33 @@
     <div>
       <h2>Sector</h2>
 
-      <table border="1px" matSort>
-        <th mat-sort-header>AAAAA</th>
-        <tr *ngFor="let i of arr">
+<!--      <table border="1px" matSort>-->
+<!--        <th mat-sort-header>AAAAA</th>-->
+<!--        <tr *ngFor="let i of arr">-->
 
-          <td style="width: 400px; height: 50px" >{{getSectorName(i.sector)}}</td>
-          <td style="width: 300px; height: 50px" >{{i.percent}}</td>
-        </tr>
-      </table>
-<!--            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">-->
+<!--          <td style="width: 400px; height: 50px" >{{getSectorName(i.sector)}}</td>-->
+<!--          <td style="width: 300px; height: 50px" >{{i.percent}}</td>-->
+<!--        </tr>-->
+<!--      </table>-->
+            <table mat-table [dataSource]="arr" class="mat-elevation-z8" matSort *ngIf="this.arr.length">
 
-<!--              <ng-container matColumnDef="a">-->
-<!--                <th mat-header-cell *matHeaderCellDef > </th>-->
-<!--                <td mat-cell *matCellDef="let element">{{getSectorName(element.sector)}}-->
-<!--                </td>-->
-<!--              </ng-container>-->
-<!--              <ng-container matColumnDef="b">-->
-<!--                <th mat-header-cell *matHeaderCellDef >  </th>-->
-<!--                <td mat-cell *matCellDef="let element">{{element.percent}}-->
-<!--                </td>-->
-<!--              </ng-container>-->
-<!--              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>-->
-<!--              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>-->
-<!--            </table>-->
+              <ng-container matColumnDef="a">
+                <th mat-header-cell *matHeaderCellDef  mat-sort-header> Sector Name </th>
+                <td mat-cell *matCellDef="let element" >{{getSectorName(element.sector)}}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="b">
+                <th mat-header-cell *matHeaderCellDef > % </th>
+                <td mat-cell *matCellDef="let element">{{element.percent}}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="c">
+                <th mat-header-cell *matHeaderCellDef >  </th>
+                <td mat-cell *matCellDef="let element"><mat-icon aria-hidden="false" style="padding-left: 80%" (click)="deleteDialog(element.sector)">X</mat-icon></td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
 
       <mat-form-field style="width: 250px; height: 25px" name="select">
         <mat-label> SECTOR</mat-label>
@@ -113,17 +117,36 @@
     </div>
   </form>
     <br><br>
-    <div style="height:250px">
+    <div >
       <h2>Project Location</h2>
-            <table border="1px">
-              <tr *ngFor="let a of locations">
-                <td style="width: 400px; height: 50px">{{a.country}}</td>
-                <td style="width: 300px; height: 50px">{{a.district}}</td>
-                <td style="width: 300px; height: 50px">{{a.percent}}</td>
-              </tr>
-            </table>
+<!--            <table border="1px">-->
+<!--              <tr *ngFor="let a of locations">-->
+<!--                <td style="width: 400px; height: 50px">{{a.country}}</td>-->
+<!--                <td style="width: 300px; height: 50px">{{a.district}}</td>-->
+<!--                <td style="width: 300px; height: 50px">{{a.percent}}</td>-->
+<!--              </tr>-->
+<!--            </table>-->
+      <table mat-table [dataSource]="locations" class="mat-elevation-z8" matSort *ngIf="this.locations.length">
+        <ng-container matColumnDef="a">
+          <th mat-header-cell *matHeaderCellDef  mat-sort-header> Country </th>
+          <td mat-cell *matCellDef="let element" >{{element.country}}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="b">
+          <th mat-header-cell *matHeaderCellDef > District </th>
+          <td mat-cell *matCellDef="let element">{{element.district}}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="c">
+          <th mat-header-cell *matHeaderCellDef > % </th>
+          <td mat-cell *matCellDef="let element">{{element.percent}}
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"> </tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
     </div>
-      <button type="button" class="btn btn-success" style="margin-left: 50px" (click)="openDialog()">ADD</button>
+      <button type="button" class="btn btn-success" style="margin: 20px" (click)="openDialog()">ADD</button>
 
 
 

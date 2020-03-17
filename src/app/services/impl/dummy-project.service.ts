@@ -44,10 +44,10 @@ export class DummyProjectService extends ProjectService {
     const filtered =projectList.filter(project => project.id !== id);
     if (filtered.length < projectList.length) {
       projectList = filtered;
-      return of({status:true}).pipe(delay(3000));
+      return of({status:true}).pipe(delay(1000));
     }
 
-    return of({status:false}).pipe(delay(3000));
+    return of({status:false}).pipe(delay(1000));
 
   }
 

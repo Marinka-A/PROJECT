@@ -1,7 +1,7 @@
 import {Component, DoCheck, Inject, OnChanges, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogConfig, MatDialogRef} from '@angular/material/dialog';
-import {ProjectService} from '../services/project.service';
+import {ProjectService, Response} from '../services/project.service';
 import {ProjectModel} from '../model/project.model';
 import {ClassifiersSevice} from '../services/classifiers.sevice';
 import {CourseDialogComponent} from '../course-dialog/course-dialog.component';
@@ -12,6 +12,9 @@ import {MatTableDataSource} from '@angular/material/table';
 import {LocationsComponent} from '../locations/locations.component';
 import {LocationModel} from '../model/location.model';
 import {MatSort} from '@angular/material/sort';
+import {Observable, of} from 'rxjs';
+import {delay} from 'rxjs/operators';
+import {ConfirmDialogComponent} from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-add-new-project',
@@ -41,7 +44,7 @@ export class ProjectComponent implements OnInit {
   arr: SectorModel[] = [];
   isLoad = false;
   private _duration: number = null;
-  displayedColumns: string[] = ['a','b'];
+  displayedColumns: string[] = ['a','b','c'];
 
   constructor(private fb: FormBuilder, private projectService: ProjectService, private classifiers: ClassifiersSevice, private dialog: MatDialog, private route: ActivatedRoute) {
     this.projectService.getProjects().subscribe(res =>
@@ -74,10 +77,11 @@ export class ProjectComponent implements OnInit {
     this.sectors = this.classifiers.getSectors();
     // this.locations = this.project.location;
 
-
     this.id = Number(this.route.snapshot.paramMap.get('id'));
     if (this.id < 0) {
       this.project = new ProjectModel(null, '', '', null, null, null, [], []);
+      this.arr = this.project.sectors;
+      this.locations = this.project.location;
       this.addForm();
       this.isLoad = true;
     } else {
@@ -130,13 +134,33 @@ export class ProjectComponent implements OnInit {
 
   sectorsAdd() {
     if (this.sectForm.value.sector && this.sectForm.value.percent) {
-      this.arr.push(this.sectForm.value);
+      this.arr = [this.sectForm.value, ...this.arr];
+      this.sectForm.reset()
     }
-    console.log(this.arr);
-  }
 
+  }
+  deleteSector(id: number): Observable<boolean> {
+    const filtered = this.arr.filter(project => project.sector !== id);
+    if (filtered.length < this.arr.length) {
+      this.arr = filtered;
+      return of(true);
+    }
+  }
+  deleteDialog(id: number) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '400px',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.deleteSector(id)
+
+      }
+    });
+
+  }
   getSectorName(id: number) {
     return this.classifiers.getSector(id);
+
   }
 
   openDialog() {
@@ -144,7 +168,8 @@ export class ProjectComponent implements OnInit {
       width: '400px',
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.locations.push(result);
+      //this.locations.push(result);
+      this.locations = [result, ...this.locations];
     });
 
   }
