@@ -9,7 +9,6 @@ import {MatDatepickerInputEvent} from '@angular/material/datepicker';
 import {ActivatedRoute} from '@angular/router';
 import {SectorModel} from '../model/sector.model';
 import {MatTableDataSource} from '@angular/material/table';
-import {LocationsComponent} from '../locations/locations.component';
 import {LocationModel} from '../model/location.model';
 import {MatSort} from '@angular/material/sort';
 import {Observable, of} from 'rxjs';
@@ -31,6 +30,13 @@ export class ProjectComponent implements OnInit {
     return this._duration;
   }
 
+  values = '';
+
+  onkey(event: any) { // without type info
+    this.values += event.target.value + ' | ';
+    console.log(this.values)
+  }
+
   public myForm: FormGroup;
   public project: ProjectModel;
   impStatus;
@@ -44,7 +50,7 @@ export class ProjectComponent implements OnInit {
   arr: SectorModel[] = [];
   isLoad = false;
   private _duration: number = null;
-  displayedColumns: string[] = ['a','b','c'];
+  displayedColumns: string[] = ['a', 'b', 'c'];
 
   constructor(private fb: FormBuilder, private projectService: ProjectService, private classifiers: ClassifiersSevice, private dialog: MatDialog, private route: ActivatedRoute) {
     this.projectService.getProjects().subscribe(res =>
@@ -70,6 +76,7 @@ export class ProjectComponent implements OnInit {
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
+
   ngOnInit() {
     console.log(22222222222);
     // this.locations = this.project.location;
@@ -78,13 +85,18 @@ export class ProjectComponent implements OnInit {
     // this.locations = this.project.location;
 
     this.id = Number(this.route.snapshot.paramMap.get('id'));
+
+    let obs$: Observable<ProjectModel> = null;
+
     if (this.id < 0) {
+      obs$ = this.projectService.getNewProject();
       this.project = new ProjectModel(null, '', '', null, null, null, [], []);
       this.arr = this.project.sectors;
       this.locations = this.project.location;
       this.addForm();
       this.isLoad = true;
     } else {
+      obs$ = this.projectService.getProjectById(this.id);
       this.projectService.getProjectById(this.id).subscribe(res => {
         this.project = res;
         this.arr = this.project.sectors;
@@ -96,6 +108,15 @@ export class ProjectComponent implements OnInit {
       });
 
     }
+    obs$.subscribe(res => {
+      this.project = res;
+      this.arr = this.project.sectors;
+      this.locations = this.project.location;
+      this.isLoad = true;
+      this.addForm();
+      this.getDuration();
+
+    });
 
   }
 
@@ -122,6 +143,9 @@ export class ProjectComponent implements OnInit {
       let days = tarberutyun / (60 * 60 * 24 * 1000) + 1;
       this._duration = days;
     }
+    else{
+      this._duration = null
+    }
   }
 
   getEnd() {
@@ -133,12 +157,14 @@ export class ProjectComponent implements OnInit {
 
 
   sectorsAdd() {
+
     if (this.sectForm.value.sector && this.sectForm.value.percent) {
       this.arr = [this.sectForm.value, ...this.arr];
-      this.sectForm.reset()
+      this.sectForm.reset();
     }
 
   }
+
   deleteSector(id: number): Observable<boolean> {
     const filtered = this.arr.filter(project => project.sector !== id);
     if (filtered.length < this.arr.length) {
@@ -146,18 +172,20 @@ export class ProjectComponent implements OnInit {
       return of(true);
     }
   }
+
   deleteDialog(id: number) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '400px',
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.deleteSector(id)
+        this.deleteSector(id);
 
       }
     });
 
   }
+
   getSectorName(id: number) {
     return this.classifiers.getSector(id);
 

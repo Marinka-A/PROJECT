@@ -3,11 +3,8 @@ import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {SampleComponent} from './sample/sample.component';
-import {SectorsComponent} from './sectors/sectors.component';
-import {TopBarComponent} from './top-bar/top-bar.component';
-import {LocationsComponent} from './locations/locations.component';
-import {AddProjectLocationComponent} from './add-project-location/add-project-location.component';
+
+
 import {RouterModule, Routes} from '@angular/router';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
@@ -40,11 +37,6 @@ const appRoutes:Routes=[
 @NgModule({
   declarations: [
     AppComponent,
-    AddProjectLocationComponent,
-    LocationsComponent,
-    TopBarComponent,
-    SectorsComponent,
-    SampleComponent,
     ProjectComponent,
     ProjectListComponent,
     CourseDialogComponent,
